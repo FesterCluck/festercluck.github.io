@@ -4,7 +4,10 @@
 <script>
 function makeBookmarklet() {
 	$.post("https://closure-compiler.appspot.com/compile", {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"}, function(text, obj) {
-			var encodedScript = encodeURIComponent("(function(){"+text+"})()");
+			if(text.indexOf("(function(") != 0) {
+				text = "(function(){"+text+"})()";
+			}
+			var encodedScript = encodeURIComponent(text);
 			var newLink = $("<a></a>");
 			newLink.attr("href","javascript:"+encodedScript);
 			newLink.text($("#link_title").val())
