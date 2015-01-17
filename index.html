@@ -3,7 +3,7 @@
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script>
 function makeBookmarklet() {
-	$.post({ url: "http://closure-compiler.appspot.com/compile", data: {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"}})
+	$.post("https://closure-compiler.appspot.com/compile", {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"})
 		.then(function(text, obj) {
 			$("output").html($("output").html()+"<br/><a href='javascript:"+text+">"+$("#link_title").val()+"</a><br/>");
 	 	});
