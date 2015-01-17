@@ -3,15 +3,14 @@
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script>
 function makeBookmarklet() {
-	$.post("https://closure-compiler.appspot.com/compile", {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"})
-		.then(function(text, obj) {
+	$.post("https://closure-compiler.appspot.com/compile", {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"}, function(text, obj) {
 			var encodedScript = encodeURIComponent("(function(){"+text+"})()");
 			var newLink = $("<a></a>");
 			newLink.attr("href","javascript:"+encodedScript);
 			newLink.text($("#link_title").val())
 			$("output").append(newLink);
 			$("output").append("<br/><br/>");
-	 	});
+	 	}, "text");
 }
 </script>
 <body>
