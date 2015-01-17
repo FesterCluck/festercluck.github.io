@@ -5,7 +5,7 @@
 function makeBookmarklet() {
 	$.post("https://closure-compiler.appspot.com/compile", {"code_url":$("#code_url").val(),"compilation_level":"SIMPLE_OPTIMIZATIONS","output_format":"text","output_info":"compiled_code"})
 		.then(function(text, obj) {
-			$("output").html($("output").html()+"<br/><a href='javascript:"+text+">"+$("#link_title").val()+"</a><br/>");
+			$("output").html($("output").html()+"<br/><a href='javascript:"+encodeURIComponent(text)+">"+$("#link_title").val()+"</a><br/>");
 	 	});
 }
 </script>
